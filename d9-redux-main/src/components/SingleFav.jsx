@@ -1,6 +1,7 @@
 import { FaHeart, FaRegHeart } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import { removeFromFavs } from '../redux/actions'
 
 const SingleFav = function ({ fav }) {
   const favList = useSelector((currentState) => {
@@ -25,10 +26,7 @@ const SingleFav = function ({ fav }) {
       <button
         className="bg-transparent border-0 fs-4 d-flex align-items-center"
         onClick={() => {
-          dispatch({
-            type: 'REMOVE_FROM_FAVLIST',
-            payload: fav,
-          })
+          dispatch(removeFromFavs(fav))
         }}
       >
         {getName(fav) ? <FaHeart /> : <FaRegHeart />}

@@ -2,6 +2,7 @@ import { Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { FaHeart, FaRegHeart } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
+import { addToFavs, removeFromFavs } from '../redux/actions'
 
 const Job = ({ data }) => {
   const favList = useSelector((currentState) => {
@@ -27,15 +28,9 @@ const Job = ({ data }) => {
           className="bg-transparent border-0 fs-4 d-flex flex-column justify-content-center me-2"
           onClick={() => {
             if (getName(data.company_name)) {
-              dispatch({
-                type: 'REMOVE_FROM_FAVLIST',
-                payload: data.company_name,
-              })
+              dispatch(removeFromFavs(data.company_name))
             } else {
-              dispatch({
-                type: 'ADD_TO_FAVLIST',
-                payload: data.company_name,
-              })
+              dispatch(addToFavs(data.company_name))
             }
           }}
         >
